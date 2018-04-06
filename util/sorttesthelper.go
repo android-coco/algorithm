@@ -9,9 +9,9 @@ import (
 
 //面向接口编程  实现java泛型
 type Sortable interface {
-	Len() int           //长度
-	Less(int, int) bool //最小值
-	Swap(int, int)      //交换
+	Len() int            //长度
+	Less(int, int) bool  //最小值
+	Swap(int, int)       //交换
 }
 type Student struct {
 	Name  string //名称
@@ -38,6 +38,8 @@ func (arrStu StuArray) Swap(i, j int) {
 	arrStu[i], arrStu[j] = arrStu[j], arrStu[i]
 }
 
+
+
 type IntArray []int
 
 func (arrInt IntArray) Len() int {
@@ -51,6 +53,8 @@ func (arrInt IntArray) Less(i, j int) bool {
 func (arrInt IntArray) Swap(i, j int) {
 	arrInt[i], arrInt[j] = arrInt[j], arrInt[i]
 }
+
+
 
 type Float64Array []float64
 
@@ -66,6 +70,7 @@ func (arrFloat64 Float64Array) Swap(i, j int) {
 	arrFloat64[i], arrFloat64[j] = arrFloat64[j], arrFloat64[i]
 }
 
+
 type StringArray []string
 
 func (arrStr StringArray) Len() int {
@@ -79,6 +84,8 @@ func (arrStr StringArray) Less(i, j int) bool {
 func (arrStr StringArray) Swap(i, j int) {
 	arrStr[i], arrStr[j] = arrStr[j], arrStr[i]
 }
+
+
 
 //生成随机数 切片
 func SortTestHelper(n, rangeL, rangeR int) IntArray {
@@ -115,25 +122,25 @@ func PrintArray(array Sortable) {
 	switch array.(type) {
 	case IntArray:
 		intArray, ok := array.(IntArray)
-		checkConvert(ok)
+		CheckConvert(ok)
 		for _, v := range intArray {
 			fmt.Println(v)
 		}
 	case Float64Array:
 		float64Array, ok := array.(Float64Array)
-		checkConvert(ok)
+		CheckConvert(ok)
 		for _, v := range float64Array {
 			fmt.Println(v)
 		}
 	case StringArray:
 		stringArray, ok := array.(StringArray)
-		checkConvert(ok)
+		CheckConvert(ok)
 		for _, v := range stringArray {
 			fmt.Println(v)
 		}
 	case StuArray:
 		stuArray, ok := array.(StuArray)
-		checkConvert(ok)
+		CheckConvert(ok)
 		for _, v := range stuArray {
 			fmt.Println(v.toString())
 		}
@@ -147,7 +154,7 @@ func isSort(array Sortable) bool {
 	switch array.(type) {
 	case IntArray:
 		intArray, ok := array.(IntArray)
-		checkConvert(ok)
+		CheckConvert(ok)
 		for i := 0; i < intArray.Len()-1; i++ {
 			if intArray[i] > intArray[i+1] {
 				return false
@@ -163,10 +170,8 @@ func isSort(array Sortable) bool {
 	return false
 }
 
-func checkConvert(ok bool) {
+func CheckConvert(ok bool) {
 	if !ok {
 		panic("type cast failed!")
 	}
 }
-
-

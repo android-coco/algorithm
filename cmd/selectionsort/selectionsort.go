@@ -75,12 +75,3 @@ func SelectionSortByInterface(array util.Sortable) {
 	}
 }
 
-func bubbleSort(array util.Sortable) {
-	for i := 0; i < array.Len(); i++ {
-		for j := 0; j < array.Len()-i-1; j++ {
-			if array.Less(j+1, j) {
-				array.Swap(j, j+1)
-			}
-		}
-	}
-}
