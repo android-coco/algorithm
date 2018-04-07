@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	n := 10000
+	n := 100000
 	arr := util.SortTestHelper(n, 0, n)
 	arr1 := util.SortTestHelper(n, 0, n)
 	util.TestSort("insertionSort2", insertionSort2, arr1)

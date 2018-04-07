@@ -1,10 +1,11 @@
 package util
 
 import (
-	"math/rand"
 	"time"
 	"fmt"
 	"strconv"
+	"math/big"
+	"crypto/rand"
 )
 
 //面向接口编程  实现java泛型
@@ -91,28 +92,37 @@ func (arrStr StringArray) Swap(i, j int) {
 func SortTestHelper(n, rangeL, rangeR int) IntArray {
 	arrInt := make([]int, 0)
 	for i := 0; i < n; i++ {
-		arrInt = append(arrInt, randInt(rangeL, rangeR))
+		arrInt = append(arrInt, int(randInt64(int64(rangeL), int64(rangeR))))
 	}
 	return IntArray(arrInt)
 }
 
-//随机数
-func randInt(min, max int) int {
-	if min >= max || max == 0 {
-		return max
+func randInt64(min,max int64) int64{
+	maxBigInt:=big.NewInt(max)
+	i,_:=rand.Int(rand.Reader,maxBigInt)
+	if i.Int64()<min{
+		randInt64(min,max)
 	}
-	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
-	return rand.Intn(max-min) + min
+	return i.Int64()
 }
+
+//随机数
+//func randInt(min, max int) int {
+//	if min >= max || max == 0 {
+//		return max
+//	}
+//	rand := rand.New(rand.NewSource(time.Now().UnixNano()))
+//	return rand.Intn(max-min) + min
+//}
 
 //测试排序运行时间
 func TestSort(sortName string, method func(array Sortable), arr Sortable) {
 	startTime := time.Now()
 	method(arr)
 	if isSort(arr) {
-		fmt.Println(sortName+" 运行时间：", time.Now().Sub(startTime))
+		fmt.Println(sortName+" 运行时间：", time.Since(startTime))
 	} else {
-		fmt.Println(sortName+" 运行时间：", time.Now().Sub(startTime), "但是排序错误")
+		fmt.Println(sortName+" 运行时间：", time.Since(startTime), "但是排序错误")
 	}
 
 }
