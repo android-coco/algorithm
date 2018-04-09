@@ -20,14 +20,14 @@ func main() {
 	//util.TestSort("bubbleSort", bubbleSort, util.IntArray(arr))
 	fmt.Println("===========================int")
 	//实现泛型
-	arrint := util.IntArray{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
-	SelectionSortByInterface(arrint) //排序
-	util.PrintArray(arrint)          //打印
+	arrInt := util.IntArray{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
+	SelectionSortByInterface(arrInt) //排序
+	util.PrintArray(arrInt)          //打印
 
 	fmt.Println("===========================string")
-	arrstr := util.StringArray{"hello", "i", "am", "go", "lang"}
-	SelectionSortByInterface(arrstr)
-	util.PrintArray(arrstr) //打印
+	arrStr := util.StringArray{"hello", "i", "am", "go", "lang"}
+	SelectionSortByInterface(arrStr)
+	util.PrintArray(arrStr) //打印
 
 	fmt.Println("===========================float64")
 	//实现泛型
@@ -45,7 +45,7 @@ func main() {
 
 //选择排序
 func SelectionSort(arr []int, n int) {
-	starttime := time.Now()
+	startTime := time.Now()
 	for i := 0; i < n; i++ {
 		//寻找[i,n]区间的最小值
 		minIndex := i
@@ -57,7 +57,7 @@ func SelectionSort(arr []int, n int) {
 		//交换
 		arr[i], arr[minIndex] = arr[minIndex], arr[i]
 	}
-	fmt.Println("运行时间：", time.Now().Sub(starttime))
+	fmt.Println("运行时间：", time.Now().Sub(startTime))
 }
 
 //选择排序
